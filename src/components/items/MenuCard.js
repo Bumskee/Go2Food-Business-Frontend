@@ -8,9 +8,9 @@ function MenuCard ({id, pictureUrl, name, description, category, price, ShowDele
     }
 
     return (
-        <div className="flex flex-row w-full bg-green-600 rounded-lg p-2 md:p-4 space-x-2 md:space-x-4">
+        <div className="flex flex-row w-full bg-green-600 rounded-lg p-2 md:p-3 space-x-2 md:space-x-4">
             {/* menu image */}
-            <img className="w-24 h-24 md:w-36 md:h-36 pointer-events-none rounded-lg" style={{objectFit:"cover"}} src={pictureUrl}></img>
+            <img className="min-w-24 min-h-24 md:min-w-28 md:min-h-28 max-w-24 max-h-24 md:max-w-28 md:max-h-28 h-24 w-24 md:w-28 md:h-28 pointer-events-none rounded-lg" style={{objectFit:"cover"}} src={pictureUrl}></img>
 
             {/* menu info */}
             <div className="flex flex-col space-y-1 sm:space-y-2 w-full justify-between">

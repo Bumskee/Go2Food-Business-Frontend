@@ -73,7 +73,7 @@ function Appbar() {
                 </div>
 
                 {/* container of drop down menu items accessibe when screen is small */}
-                <div className={`flex p-1 rounded-b-[12px] flex-col fixed mt-16 bg-white sm:hidden shadow-xl ${IconButtonSmallShown ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"} transition-all`}>
+                <div className={`p-1 rounded-b-[12px] fixed mt-16 bg-white  shadow-xl ${IconButtonSmallShown ? "flex flex-col translate-y-0 opacity-100" : "hidden -translate-y-1 opacity-0"} transition-all`}>
                         {
                             icon_buttons.map((e, index) => {
                                 return (

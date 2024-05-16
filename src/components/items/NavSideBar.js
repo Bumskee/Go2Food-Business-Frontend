@@ -19,21 +19,9 @@ function NavButton({IconImage, text, path, current, func}) {
     )
 }
 
-function Banner() {
-    return (
-        <div className="rounded-[12px] w-[90%] my-4 p-4 m-auto flex flex-col bg-green-700 shadow-md">
-            <p className="py-4 px-2 text-white font-bold text-[18px]/[26px]">
-                Upgrade your account to Get Free Voucher
-            </p>
-            <button className="py-2 px-4 flex items-start w-fit mt-4 bg-white rounded-md hover:bg-gray-300 active:bg-gray-600 active:text-white drop-shadow-md">
-                Upgrade
-            </button>
-        </div>
-    )
-}
-
 function NavSideBar() {
     const [NavSideBarShown, SetNavSideBarShown] = useState(false);
+    const navSideBarOverlay = document.getElementById('navSideBarOverlay');
     const navSideBar = document.getElementById('navSideBar');
     const [matches, setMatches] = useState(
         window.matchMedia("(min-width: 1650px)").matches
@@ -62,6 +50,7 @@ function NavSideBar() {
         {
             try 
             {
+                navSideBarOverlay.classList.remove("hidden")
                 navSideBar.classList.remove("hidden");
                 navSideBar.classList.remove("xl-block");
                 navSideBar.classList.replace("w-[250px]", "w-[50%]");
@@ -78,6 +67,7 @@ function NavSideBar() {
         {
             try 
             {
+                navSideBarOverlay.classList.add("hidden")
                 navSideBar.classList.add("hidden");
                 navSideBar.classList.add("min-[1650px]:block");
                 navSideBar.classList.replace("w-[50%]", "w-[250px]");
@@ -112,6 +102,7 @@ function NavSideBar() {
     
     return (
         <div className="z-[9]">
+            <div onClick={navSideBarBurgerButtonCliked} id="navSideBarOverlay" className="hidden fixed w-full h-[100vh] bg-black bg-opacity-35"></div>
             <div id="navSideBarBurgerButton" onClick={navSideBarBurgerButtonCliked} className="bg-slate-50 ml-2 p-2 fixed mt-[72px] block min-[1650px]:hidden rounded-[12px] hover:bg-gray-300 active:bg-gray-400 shadow-xl">
                 <MenuOutlinedIcon />
             </div>
