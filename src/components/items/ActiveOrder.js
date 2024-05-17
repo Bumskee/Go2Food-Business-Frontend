@@ -23,7 +23,7 @@ function ActiveOrderCard ({order_id, username, distance, total_price, order_data
 
     const DeliverActiveOrder = async () => {
         SetLoading(true)
-        axios.put(`${BackendURL}/accept_pending_order`, {
+        axios.put(`${BackendURL}/deliver_pending_order`, {
             id: order_id,
         })
         .then(async (response) => {

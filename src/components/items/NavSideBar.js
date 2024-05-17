@@ -107,7 +107,7 @@ function NavSideBar() {
                 <MenuOutlinedIcon />
             </div>
 
-            <div id="navSideBar" className=" bg-gray-100 fixed mt-16 w-[250px] rounded-br-[20px] hidden min-[1650px]:block shadow-xl z-[7] animate-nav-bars-menu-popup">
+            <div id="navSideBar" className=" bg-white fixed mt-16 w-[250px] rounded-br-[20px] hidden min-[1650px]:block shadow-xl z-[7] animate-nav-bars-menu-popup">
 
                 {/* nav bar buttons div container */}
                 <div className="flex flex-col p-4">
