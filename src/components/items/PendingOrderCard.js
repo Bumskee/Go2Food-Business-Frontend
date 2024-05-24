@@ -17,7 +17,7 @@ function OrderItemList ({itemName, amount, price}) {
     )
 }
 
-function PendingOrderCard ({order_id, username, distance, total_price, order_data}) {
+function PendingOrderCard ({order_id, username, location, distance, total_price, order_data}) {
 
     const [Loading, SetLoading] = useState(false)
 
@@ -76,6 +76,8 @@ function PendingOrderCard ({order_id, username, distance, total_price, order_dat
                         <p className="text-white font-bold">{distance}km</p>
                         <p className="text-white font-bold"> {total_price}$</p>
                     </div>
+
+                    <p className="text-white line-clamp-1 font-bold">{location}</p>
 
                     <div>
                         <hr className="h-0 border-b border-solid border-grey-500 grow" />

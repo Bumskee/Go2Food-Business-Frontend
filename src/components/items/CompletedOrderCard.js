@@ -1,8 +1,6 @@
-import axios from "axios";
 import {React, useState} from "react";
 import LoadingOverlay from "./LoadingOverlay";
-import { wait } from "../utils/Functionabilities";
-import { BackendURL } from "../configs/GlobalVar";
+import StarIcon from '@mui/icons-material/Star';
 
 function OrderItemList ({itemName, amount, price}) {
     return (
@@ -17,50 +15,23 @@ function OrderItemList ({itemName, amount, price}) {
     )
 }
 
-function ActiveOrderCard ({order_id, username, location, distance, total_price, order_data}) {
+function CompletedOrderCard ({ username, total_price, order_data, completed, location, distance, status, rating}) {
 
-    const [Loading, SetLoading] = useState(false)
-
-    const DeliverActiveOrder = async () => {
-        SetLoading(true)
-        axios.put(`${BackendURL}/deliver_pending_order`, {
-            id: order_id,
-        })
-        .then(async (response) => {
-            if (response.data)
-            {
-                await wait(3000)
-                SetLoading(false)
-            }
-        })
-        .catch((error) => {
-            console.log(error, 'error');
-            SetLoading(false)
-        });
-    }
-
-    const AbortActiveOrder = async () => {
-        SetLoading(true)
-        axios.put(`${BackendURL}/reject_pending_order`, {
-            id: order_id,
-        })
-        .then(async (response) => {
-            if (response.data)
-            {
-                await wait(3000)
-                SetLoading(false)
-            }
-        })
-        .catch((error) => {
-            console.log(error, 'error');
-            SetLoading(false)
-        });
-    }
+    const formatDate = (dateString) => {
+        const dateObj = new Date(dateString);
+        const day = dateObj.getDate().toString().padStart(2, '0');
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
+        const year = dateObj.getFullYear();
+        const hours = dateObj.getHours().toString().padStart(2, '0');
+        const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+    
+        const formattedString = `${day}/${month}/${year} - ${hours}:${minutes}`;
+        return formattedString;
+      };
 
     return (
         <div className="flex flex-row space-x-2 justify-between w-full bg-green-600 rounded-lg p-2">
             <div className="flex flex-row space-x-2">
-                {Loading ? <LoadingOverlay /> : <div/>}
                 {/* order card logo decoration*/}
                 <div className="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-16 h-16 sm:h-20 sm:w-20 text-white" >
@@ -71,13 +42,16 @@ function ActiveOrderCard ({order_id, username, location, distance, total_price, 
                 {/* order card information */}
                 <div className="flex flex-col space-y-2">
                     {/* username and distance*/}
-                    <div className="flex flex-row space-x-2">
-                        <p className="text-white line-clamp-1">{username}</p>
-                        <p className="text-white font-bold">{distance}km</p>
-                        <p className="text-white font-bold"> {total_price}$</p>
+                    <div>
+                        <div className="flex flex-row space-x-2">
+                            <p className="text-white line-clamp-1">{username}</p>
+                            <p className="text-white font-bold"> {total_price}$</p>
+                        </div>
+                        <p className="font-bold text-gray-800 text-opacity-100">{formatDate(completed)}</p>
+                        <div className="flex flex-row">
+                            <p className="font-bold text-white">{location}</p>
+                        </div>
                     </div>
-
-                    <p className="text-white line-clamp-1 font-bold">{location}</p>
 
                     <div>
                         <hr className="h-0 border-b border-solid border-grey-500 grow" />
@@ -98,15 +72,18 @@ function ActiveOrderCard ({order_id, username, location, distance, total_price, 
 
             {/* order control (buttons) */}
             <div className="flex flex-col items-center justify-center">
-                <button onClick={() => {AbortActiveOrder()}} className="bg-red-600 hover:bg-red-700 active:bg-red-800 p-2 h-full w-20 text-white font-bold rounded-lg">
-                    ABORT
-                </button>
-                <button onClick={() => {DeliverActiveOrder()}} className="bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 p-2 w-20 h-full text-white font-bold rounded-lg">
-                    DELIVER
-                </button>
+                {
+                    status === "unrated" ?
+                        <p className="text-white font-bold">unrated</p>
+                        :
+                        <div className="flex flex-row items-center justify-center space-x-0.5">
+                            <StarIcon className="text-yellow-500" />
+                            <p className="font-bold text-white">{rating}</p>
+                        </div>
+                }
             </div>
         </div>
     )
 }
 
-export default ActiveOrderCard;
+export default CompletedOrderCard;

@@ -66,7 +66,7 @@ function FoodOrder () {
                                     if (e["status"] === "pending")
                                     {
                                         return (
-                                        <PendingOrderCard key={index} order_id={e["_id"]} username={e["username"]} total_price={e["total_price"]} distance={e["distance"]} order_data={e["order"]} SetActiveOrderData={SetActiveOrderData} />
+                                        <PendingOrderCard key={index} order_id={e["_id"]} username={e["username"]} total_price={e["total_price"]} location={e["location"]} distance={e["distance"]} order_data={e["order"]} SetActiveOrderData={SetActiveOrderData} />
                                         )
                                     }
                                 })
@@ -92,7 +92,7 @@ function FoodOrder () {
                                     if (e["status"] === "accepted")
                                     {
                                         return (
-                                        <ActiveOrderCard key={index} order_id={e["_id"]} username={e["username"]} total_price={e["total_price"]} distance={e["distance"]} order_data={e["order"]} SetActiveOrderData={SetActiveOrderData} />
+                                        <ActiveOrderCard key={index} order_id={e["_id"]} username={e["username"]} total_price={e["total_price"]} location={e["location"]} distance={e["distance"]} order_data={e["order"]} SetActiveOrderData={SetActiveOrderData} />
                                         )
                                     }
                                 })

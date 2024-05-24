@@ -193,12 +193,12 @@ function Login() {
                 <button type="submit" className="max-w-[250px] min-w-[250px] mx-auto px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-green-700 bg-green-600">Sign In</button>
 
                 {/* not registered text and create an account button*/}
-                <div className="flex flex-row mx-auto">
+                {/* <div className="flex flex-row mx-auto">
                     <p className="text-sm leading-relaxed text-gray-900 mr-2">Not registered yet?</p>
                     <button onClick={() => navigate('/register')}>
                         <p className="text-sm font-bold text-grey-700 hover:underline">Create an Account</p>
                     </button>
-                </div>
+                </div> */}
             </form>
         </div>
     )

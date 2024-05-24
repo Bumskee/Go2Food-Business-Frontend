@@ -3,11 +3,7 @@ import {useState, useEffect} from "react";
 import { Link, useLocation} from "react-router-dom";
 import RestaurantOutlinedIcon from '@mui/icons-material/RestaurantOutlined';
 import DeliveryDiningOutlinedIcon from '@mui/icons-material/DeliveryDiningOutlined';
-import TryOutlinedIcon from '@mui/icons-material/TryOutlined';
-import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 function NavButton({IconImage, text, path, current, func}) {
@@ -39,11 +35,7 @@ function NavSideBar() {
 
     const list_buttons = [[RestaurantOutlinedIcon, "Dashboard", "/", location.pathname], 
                          [DeliveryDiningOutlinedIcon, "Food Order", "/orders", location.pathname],
-                         [TryOutlinedIcon, "Favorite", "/favorites", location.pathname],
-                         [ChatOutlinedIcon, "Message", "/messages", location.pathname],
-                         [HistoryOutlinedIcon, "Order History", "/history", location.pathname],
-                         [ReceiptLongOutlinedIcon, "Bills", "/bills", location.pathname],
-                         [SettingsOutlinedIcon, "Settings", "/settings", location.pathname]]
+                         [HistoryOutlinedIcon, "Order History", "/history", location.pathname],]
 
     useEffect(() => {
         if (NavSideBarShown)
